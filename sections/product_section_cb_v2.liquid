@@ -1,0 +1,119 @@
+<div id="sectionCb-{{ section.id }}" class="sectionCb fullCb {{ section.settings.section_style }}" data-section-id="{{ section.id }}">
+    <div class="featuresInnerCb ">
+        <h2 style="text-align: center;" class="">{{section.settings.features_title_cb}}</h2>
+        {% for block in section.blocks %}
+      	{% assign bulletsCb = block.settings.features_txt_cb | split:'<br />' %}
+      	{%- if block.settings.features_h3_cb != blank -%}
+      {% if forloop.last == true %}
+ 		<div class=" {{block.settings.img_align_cb}} featuresSectionCb featuresCbLast">
+          {%- else -%}
+          <div class=" {{block.settings.img_align_cb}} featuresSectionCb">
+        {% endif %}
+            <div class="leftCb flexCenterCb">
+                <h3>{{block.settings.features_h3_cb}}</h3>
+                <ul>
+                  {% for bulletCb in bulletsCb %}
+                  <li>{{bulletCb}}</li>
+                   {% endfor %}
+                </ul>
+            </div>
+            <div class="rightCb">
+                <picture>
+                  <source srcset="{{ block.settings.features_img_cb  | img_url: '1024x768' }}" type="image/webp">
+                  <source srcset="{{ block.settings.features_img_cb  | img_url: '1024x768' }}" type="image/jpeg"> 
+                    <img src="{{ block.settings.features_img_cb  | img_url: '1024x768' }}" alt="">
+                </picture>
+            </div>                     
+        </div>
+
+  		{% endif %}
+        {%-endfor-%}
+
+</div>
+</div>
+
+
+{% schema %}
+{
+
+	"name": "product_features_v2_cb",
+    "tag": "section",
+    "settings": [{
+            "type": "header",
+            "content": "Features section"
+
+        },
+        {
+            "id": "features_title_cb",
+            "type": "text",
+            "label": "Features Section title",
+            "default": "{{product.title}} Features"
+        },
+		{
+        "type": "select",
+        "id": "section_style",
+        "label": "t:sections.featured_content.settings.section_style.label",
+        "default": "section-blank",
+        "options": [
+          {
+            "value": "section-blank",
+            "label": "t:sections.featured_content.settings.section_style.options__1.label"
+          },
+		      {
+            "value": "section-default",
+            "label": "t:sections.featured_content.settings.section_style.options__2.label"
+          },
+          {
+            "value": "section-border",
+            "label": "t:sections.featured_content.settings.section_style.options__3.label"
+          },
+		  {
+            "value": "pinkGrey",
+            "label": "Primary CB Color"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+                {
+    "name": "Features Section Img List",
+    "type": "features-title",
+    "settings": [
+
+        {
+            "id": "features_h3_cb",
+            "type": "richtext",
+            "label": "product feature h3"
+        },
+        {
+            "id": "features_txt_cb",
+            "type": "richtext",
+            "label": "product feature txt 1"
+        },
+        {
+            "id": "features_img_cb",
+            "type": "image_picker",
+            "label": "product feature image 1"
+        },
+        {
+            "type": "select",
+            "id": "img_align_cb",
+            "label": "Image align",
+            "default": "featuresGridCb",
+            "options": [{
+                    "value": "featuresGridReverseCb",
+                    "label": "align left"
+                },
+                {
+                    "value": "featuresGridCb",
+                    "label": "align right"
+                }
+            ]
+        }
+        ]
+    }
+]
+
+}
+{% endschema %} 
+

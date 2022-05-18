@@ -1,0 +1,56 @@
+{%- assign vendorVid = product.metafields.my_fields.vendorvidlinkcb.value | replace: '/watch?v=', '/embed/'-%}
+{%- assign vendor_vtext = product.metafields.my_fields.vendortextcb.value -%}
+{%- assign vendor_pdfs = product.metafields.my_fields.vendor_docs -%}
+<div class="videoandtextsection">
+
+  <div class="box">
+    <div class="wrapper">
+
+        <div class="grid">
+          
+          <div class="grid__item large--eight-twelfths medium--eight-twelfths">
+
+            <div class="video-left">
+            		<iframe src="{{vendorVid}}" frameborder="0"></iframe>
+            </div>
+            
+          </div>
+          <div class="grid__item large--four-twelfths medium--four-twelfths">
+            <div class="text-right">
+              <div class="vtr_top">                  
+              <p>{{vendor_vtext}}</p>                
+              </div>
+              
+              <div class="ctr_bottom">
+                <a href="{{vendor_pdfs}}"><img src="https://cdn.shopify.com/s/files/1/0609/8436/1184/files/pdf-icon.png?v=1649117110">Download Owner’s Manual</a>
+              </div>
+              
+            </div>
+
+          </div>          
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% schema %}
+{
+"name": "Video Text",
+"settings": [],
+"presets": [
+{
+"name": "Video Text Section",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

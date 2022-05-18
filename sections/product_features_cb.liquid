@@ -1,0 +1,89 @@
+{%- assign count = 0 -%}
+{%- for something in somethings -%}
+  {%- assign count = count | plus: 1 -%}
+{%- endfor -%}
+
+<div class="featuresCb fullCb">
+    <div class="featuresInnerCb sectionCb">
+        <h2 style="text-align: center;">{{section.settings.features_title_cb}}</h2>
+      {% for block in section.blocks %}
+        <div class="features1Cb {{block.settings.img_align_cb}} featuresSectionCb">
+            <div class="leftCb flexCenterCb">
+                <h3>{{block.settings.features_h3_cb}}</h3>
+                <ul>
+                    {{block.settings.features_txt_cb}}
+                </ul>
+            </div>
+            <div class="rightCb">
+                <picture>
+                  <source srcset="{{ block.settings.features_img_cb  | img_url: '1024x768' }}" type="image/webp">
+                  <source srcset="{{ block.settings.features_img_cb  | img_url: '1024x768' }}" type="image/jpeg"> 
+                    <img src="{{ block.settings.features_img_cb  | img_url: '1024x768' }}" alt="">
+                </picture>
+            </div>                     
+        </div>
+      {% endfor %}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "product_features_cb",
+    "tag": "section",
+    "settings": [
+    {   
+        "type":"header",
+        "content": "Features section"
+    },
+	{   
+    "id": "features_title_cb",
+    "type": "text",
+    "label": "Features Section title",
+    "default": "{{product.title}} Features"
+    }
+],
+"blocks" : [
+    {
+    "name": "Features Section Img List",
+    "type": "features-title",
+    "settings": [
+            
+            {   
+            "id": "features_h3_cb",
+            "type": "richtext",
+            "label": "product feature h3"
+            },
+            {   
+            "id": "features_txt_cb",
+            "type": "richtext",
+            "label": "product feature txt"
+            },
+             {   
+            "id": "features_img_cb",
+            "type": "image_picker",
+            "label": "product feature image"
+            },
+			{
+            "type": "select",
+            "id": "img_align_cb",
+            "label": "Image align",
+            "default": "featuresGridCb",
+            "options": [
+              {
+                "value": "featuresGridReverseCb",
+                "label": "align left"
+              },
+              {
+                "value": "featuresGridCb",
+                "label": "align right"
+              }
+            ]
+          	}
+
+        ]
+    }   
+      
+        ]
+}          
+{% endschema %} 
+
